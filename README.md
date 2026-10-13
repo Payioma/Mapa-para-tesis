@@ -5,7 +5,7 @@ Repositorio de código y recursos cartográficos para el Trabajo Final de Títul
 ---
 
 ## 📌 Descripción del Proyecto
-Este proyecto contiene scripts en Python automatizados con la librería `folium` para generar un mapa interactivo de la Región Metropolitana de Chile. El mapa visualiza la distribución geográfica de los sitios de muestreo (comunas como Vitacura, Batuco, Huechuraba, Quinta Normal y Padre Hurtado), asociando cada punto a su respectivo hospedero vegetal y facilitando la validación espacial de los insectos benéficos evaluados en el estudio.
+Este proyecto contiene scripts en Python automatizados con la librería `folium` para generar un mapa interactivo de la Región Metropolitana de Chile. El mapa visualiza la distribución geográfica de los sitios de muestreo (comunas como Vitacura, Lampa, Huechuraba y Quinta Normal), asociando cada punto a su respectivo hospedero vegetal y facilitando la validación espacial de los insectos benéficos evaluados en el estudio.
 
 ---
 
