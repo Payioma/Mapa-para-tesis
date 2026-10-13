@@ -76,45 +76,33 @@ for sitio, coords in sitios_muestreo.items():
 # --- INYECCIÓN DEL BOTÓN Y REGLA CSS ---
 # --- BOTÓN Y LÓGICA DE ZOOM / ETIQUETAS ---
 script_interactivo = """
-<style>
-    /* Por defecto, las etiquetas se ocultan cuando el mapa está muy lejos para evitar amontonamiento */
-    .zoom-lejos .leaflet-tooltip { display: none !important; }
-</style>
-
 <div style="position: fixed; top: 15px; left: 55px; z-index: 9999;">
     <button id="btnEtiquetas" onclick="alternarEtiquetas()" style="background-color: #ffffff; border: 2px solid #28a745; border-radius: 5px; padding: 6px 12px; font-size: 14px; font-weight: bold; cursor: pointer; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); color: #28a745; font-family: sans-serif;">
         Ocultar Etiquetas
     </button>
 </div>
 
+<style id="estilo-etiquetas"></style>
+
 <script>
-    var usuarioOcultoManualmente = false;
-
-    // Función para manejar la visibilidad según el nivel de zoom del mapa
-    function actualizarZoomVisibilidad() {
-        var mapDiv = document.querySelector('.folium-map');
-        var zoomActual = window.map_... ? window.map_....getZoom() : 10; // Referencia segura
-        
-        // Si el usuario no ha presionado el botón de ocultar manualmente, 
-        // el mapa decide si muestra las etiquetas basándose en el zoom (ej. zoom mayor a 11)
-        // (Nota: folium inyecta el mapa en una variable global que podemos detectar)
-    }
-
     var etiquetasVisibles = true;
     function alternarEtiquetas() {
         var btn = document.getElementById('btnEtiquetas');
-        var tooltips = document.querySelectorAll('.leaflet-tooltip');
+        var styleSheet = document.getElementById('estilo-etiquetas');
         
         etiquetasVisibles = !etiquetasVisibles;
-        usuarioOcultoManualmente = !etiquetasVisibles;
         
-        tooltips.forEach(function(t) {
-            t.style.display = etiquetasVisibles ? 'block' : 'none';
-        });
-        
-        btn.innerHTML = etiquetasVisibles ? 'Ocultar Etiquetas' : 'Mostrar Etiquetas';
-        btn.style.color = etiquetasVisibles ? '#28a745' : '#6c757d';
-        btn.style.borderColor = etiquetasVisibles ? '#28a745' : '#6c757d';
+        if (!etiquetasVisibles) {
+            styleSheet.innerHTML = '.leaflet-tooltip { display: none !important; }';
+            btn.innerHTML = 'Mostrar Etiquetas';
+            btn.style.color = '#6c757d';
+            btn.style.borderColor = '#6c757d';
+        } else {
+            styleSheet.innerHTML = '';
+            btn.innerHTML = 'Ocultar Etiquetas';
+            btn.style.color = '#28a745';
+            btn.style.borderColor = '#28a745';
+        }
     }
 </script>
 """
