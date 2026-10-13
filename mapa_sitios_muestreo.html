@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_df9e148ebbe3d0c04259259df3bf0f9e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+<style>
+    /* Por defecto, las etiquetas se ocultan cuando el mapa está muy lejos para evitar amontonamiento */
+    .zoom-lejos .leaflet-tooltip { display: none !important; }
+</style>
+
+<div style="position: fixed; top: 15px; left: 55px; z-index: 9999;">
+    <button id="btnEtiquetas" onclick="alternarEtiquetas()" style="background-color: #ffffff; border: 2px solid #28a745; border-radius: 5px; padding: 6px 12px; font-size: 14px; font-weight: bold; cursor: pointer; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); color: #28a745; font-family: sans-serif;">
+        Ocultar Etiquetas
+    </button>
+</div>
+
+<script>
+    var usuarioOcultoManualmente = false;
+
+    // Función para manejar la visibilidad según el nivel de zoom del mapa
+    function actualizarZoomVisibilidad() {
+        var mapDiv = document.querySelector('.folium-map');
+        var zoomActual = window.map_... ? window.map_....getZoom() : 10; // Referencia segura
+        
+        // Si el usuario no ha presionado el botón de ocultar manualmente, 
+        // el mapa decide si muestra las etiquetas basándose en el zoom (ej. zoom mayor a 11)
+        // (Nota: folium inyecta el mapa en una variable global que podemos detectar)
+    }
+
+    var etiquetasVisibles = true;
+    function alternarEtiquetas() {
+        var btn = document.getElementById('btnEtiquetas');
+        var tooltips = document.querySelectorAll('.leaflet-tooltip');
+        
+        etiquetasVisibles = !etiquetasVisibles;
+        usuarioOcultoManualmente = !etiquetasVisibles;
+        
+        tooltips.forEach(function(t) {
+            t.style.display = etiquetasVisibles ? 'block' : 'none';
+        });
+        
+        btn.innerHTML = etiquetasVisibles ? 'Ocultar Etiquetas' : 'Mostrar Etiquetas';
+        btn.style.color = etiquetasVisibles ? '#28a745' : '#6c757d';
+        btn.style.borderColor = etiquetasVisibles ? '#28a745' : '#6c757d';
+    }
+</script>
+    
+            <div class="folium-map" id="map_df9e148ebbe3d0c04259259df3bf0f9e" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_df9e148ebbe3d0c04259259df3bf0f9e = L.map(
+                "map_df9e148ebbe3d0c04259259df3bf0f9e",
+                {
+                    center: [-33.4372, -70.6506],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_31af2563bc085d8af74d1c30ad0c86ac = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Tiles \u0026copy; Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_31af2563bc085d8af74d1c30ad0c86ac.addTo(map_df9e148ebbe3d0c04259259df3bf0f9e);
+        
+    
+            var marker_cluster_bc1da26839556aac94e35f06a0bd2e63 = L.markerClusterGroup(
+                {
+  "maxClusterRadius": 35,
+  "spiderfyOnMaxZoom": true,
+  "zoomToBoundsOnClick": true,
+}
+            );
+            marker_cluster_bc1da26839556aac94e35f06a0bd2e63.options.iconCreateFunction =
+                function(cluster) {
+    var childCount = cluster.getChildCount();
+    var markers = cluster.getAllChildMarkers();
+    var titles = [];
+    
+    for (var i = 0; i < markers.length; i++) {
+        // Recolectar los nombres guardados en el atributo "title" de cada marcador
+        if (markers[i].options.title) {
+            titles.push("• " + markers[i].options.title);
+        }
+    }
+    
+    // Unir los nombres con un salto de línea HTML (&#10;) para que se lean como lista
+    var hoverText = titles.join('&#10;');
+    
+    var c = ' marker-cluster-';
+    if (childCount < 10) { c += 'small'; }
+    else if (childCount < 100) { c += 'medium'; }
+    else { c += 'large'; }
+    
+    // Inyectamos hoverText en el atributo 'title' del div principal
+    return new L.DivIcon({
+        html: '<div title="' + hoverText + '"><span>' + childCount + '</span></div>',
+        className: 'marker-cluster' + c,
+        iconSize: new L.Point(40, 40)
+    });
+};
+        
+    
+            var marker_1dad28c91e866e041b83808d24bd5a2a = L.marker(
+                [-33.3806, -70.5733],
+                {
+  "title": "Vitacura (Laurel de flor)",
+}
+            ).addTo(marker_cluster_bc1da26839556aac94e35f06a0bd2e63);
+        
+    
+            var icon_d5a8317f90bf7fc737bc0760ab42250b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "leaf",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_1dad28c91e866e041b83808d24bd5a2a.bindTooltip(
+                `<div>
+                     Vitacura (Laurel de flor)
+                 </div>`,
+                {
+  "permanent": true,
+  "direction": "bottom",
+  "opacity": 0.85,
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1dad28c91e866e041b83808d24bd5a2a.setIcon(icon_d5a8317f90bf7fc737bc0760ab42250b);
+            
+    
+            var marker_8bbe5202712006061b79a4b612e93fbb = L.marker(
+                [-33.380789, -70.549907],
+                {
+  "title": "Vitacura (Cardenal)",
+}
+            ).addTo(marker_cluster_bc1da26839556aac94e35f06a0bd2e63);
+        
+    
+            var icon_bc653e2b83de35329a35d63423f348ea = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "leaf",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_8bbe5202712006061b79a4b612e93fbb.bindTooltip(
+                `<div>
+                     Vitacura (Cardenal)
+                 </div>`,
+                {
+  "permanent": true,
+  "direction": "bottom",
+  "opacity": 0.85,
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8bbe5202712006061b79a4b612e93fbb.setIcon(icon_bc653e2b83de35329a35d63423f348ea);
+            
+    
+            var marker_c24931a45f42021d3787b5ac31f70f15 = L.marker(
+                [-33.383762, -70.55116],
+                {
+  "title": "Vitacura (Laurel)",
+}
+            ).addTo(marker_cluster_bc1da26839556aac94e35f06a0bd2e63);
+        
+    
+            var icon_11bd5e95acd1ad2dfbac78ef77ef8a63 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "leaf",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_c24931a45f42021d3787b5ac31f70f15.bindTooltip(
+                `<div>
+                     Vitacura (Laurel)
+                 </div>`,
+                {
+  "permanent": true,
+  "direction": "bottom",
+  "opacity": 0.85,
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c24931a45f42021d3787b5ac31f70f15.setIcon(icon_11bd5e95acd1ad2dfbac78ef77ef8a63);
+            
+    
+            var marker_c87ad69cadc182c7ae6ccc69594e208f = L.marker(
+                [-33.231159, -70.8089],
+                {
+  "title": "Lampa (Mioporo)",
+}
+            ).addTo(marker_cluster_bc1da26839556aac94e35f06a0bd2e63);
+        
+    
+            var icon_ad4cf02b1c42ced46762809b9c20793f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "leaf",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_c87ad69cadc182c7ae6ccc69594e208f.bindTooltip(
+                `<div>
+                     Lampa (Mioporo)
+                 </div>`,
+                {
+  "permanent": true,
+  "direction": "bottom",
+  "opacity": 0.85,
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c87ad69cadc182c7ae6ccc69594e208f.setIcon(icon_ad4cf02b1c42ced46762809b9c20793f);
+            
+    
+            var marker_a99bcd79c5d6dfdb4fc9665c76e48b1b = L.marker(
+                [-33.222971, -70.796972],
+                {
+  "title": "Lampa (Limonero)",
+}
+            ).addTo(marker_cluster_bc1da26839556aac94e35f06a0bd2e63);
+        
+    
+            var icon_91111275d9ed4158b6b1400f2b49accc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "leaf",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_a99bcd79c5d6dfdb4fc9665c76e48b1b.bindTooltip(
+                `<div>
+                     Lampa (Limonero)
+                 </div>`,
+                {
+  "permanent": true,
+  "direction": "bottom",
+  "opacity": 0.85,
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a99bcd79c5d6dfdb4fc9665c76e48b1b.setIcon(icon_91111275d9ed4158b6b1400f2b49accc);
+            
+    
+            var marker_44fefe86d9d7ab411c11140606027b12 = L.marker(
+                [-33.374993, -70.606424],
+                {
+  "title": "Huechuraba (Parque Metropolitano)",
+}
+            ).addTo(marker_cluster_bc1da26839556aac94e35f06a0bd2e63);
+        
+    
+            var icon_88da0c63546e6a27da2b612b5f616f4a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "leaf",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_44fefe86d9d7ab411c11140606027b12.bindTooltip(
+                `<div>
+                     Huechuraba (Parque Metropolitano)
+                 </div>`,
+                {
+  "permanent": true,
+  "direction": "bottom",
+  "opacity": 0.85,
+  "sticky": true,
+}
+            );
+        
+    
+                marker_44fefe86d9d7ab411c11140606027b12.setIcon(icon_88da0c63546e6a27da2b612b5f616f4a);
+            
+    
+            var marker_5aa12ce80ea65fe4f5eaee70716dd73a = L.marker(
+                [-33.376325, -70.613788],
+                {
+  "title": "Huechuraba (U. Mayor)",
+}
+            ).addTo(marker_cluster_bc1da26839556aac94e35f06a0bd2e63);
+        
+    
+            var icon_fa8e4cf8c4435495c8e4a9ce78630f61 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "leaf",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_5aa12ce80ea65fe4f5eaee70716dd73a.bindTooltip(
+                `<div>
+                     Huechuraba (U. Mayor)
+                 </div>`,
+                {
+  "permanent": true,
+  "direction": "bottom",
+  "opacity": 0.85,
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5aa12ce80ea65fe4f5eaee70716dd73a.setIcon(icon_fa8e4cf8c4435495c8e4a9ce78630f61);
+            
+    
+            var marker_d67f667b89f5540963f1bd3d7f1e6a5d = L.marker(
+                [-33.422468, -70.694987],
+                {
+  "title": "Quinta Normal (Laurel)",
+}
+            ).addTo(marker_cluster_bc1da26839556aac94e35f06a0bd2e63);
+        
+    
+            var icon_9cfc0140818aa5e8f2605add14805844 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "leaf",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_d67f667b89f5540963f1bd3d7f1e6a5d.bindTooltip(
+                `<div>
+                     Quinta Normal (Laurel)
+                 </div>`,
+                {
+  "permanent": true,
+  "direction": "bottom",
+  "opacity": 0.85,
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d67f667b89f5540963f1bd3d7f1e6a5d.setIcon(icon_9cfc0140818aa5e8f2605add14805844);
+            
+    
+            marker_cluster_bc1da26839556aac94e35f06a0bd2e63.addTo(map_df9e148ebbe3d0c04259259df3bf0f9e);
+        
+</script>
+</html>
